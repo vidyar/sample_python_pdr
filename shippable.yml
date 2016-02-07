@@ -12,10 +12,10 @@ env:
 
 build:
   pre_ci:
-    - docker build -t=shippabledocker/hitchcock2_sample_python .
+    - docker build -t=quay.io/shippablequay/hitchcock2_sample_python .
 
   pre_ci_boot:
-    image_name: shippabledocker/hitchcock2_sample_python
+    image_name: quay.io/shippablequay/hitchcock2_sample_python
     image_tag: latest
     pull: false
     options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
@@ -25,13 +25,11 @@ build:
     - ls -al
 
   post_ci:
-    - docker push shippabledocker/hitchcock2_sample_python
+    - docker push quay.io/shippablequay/hitchcock2_sample_python
 
 
 integrations:
   hub:
-    - integrationName: ship-docker
-      type: docker
-      branches:
-        only:
-          - master
+    - integrationName: ship-pdr
+      type: private docker registry
+      

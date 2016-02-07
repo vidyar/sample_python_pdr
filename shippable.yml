@@ -11,21 +11,26 @@ env:
     - M1=ONE
 
 build:
-  pre_ci:
-    - docker build -t=quay.io/shippablequay/hitchcock2_sample_python .
+  #pre_ci:
+   # - docker build -t=quay.io/shippablequay/hitchcock2_sample_python .
 
-  pre_ci_boot:
-    image_name: quay.io/shippablequay/hitchcock2_sample_python
-    image_tag: latest
-    pull: false
-    options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
+ # pre_ci_boot:
+  #  image_name: quay.io/shippablequay/hitchcock2_sample_python
+   # image_tag: latest
+    #pull: true
+    #options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
   ci:
     - ps -eax
     - ls -al
 
   post_ci:
+    - docker build -t=quay.io/shippablequay/hitchcock2_sample_python .
     - docker push quay.io/shippablequay/hitchcock2_sample_python
+    - docker build --rm -t=quay.io/shippablequay/sample_python_pdr:test .
+    - docker build --rm -t=quay.io/shippablequay/sample_python_pdr:qa .
+    - docker push quay.io/shippablequay/sample_python_pdr:test
+    - docker push quay.io/shippablequay/sample_python_pdr:qa
 
 
 integrations:

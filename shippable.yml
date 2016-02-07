@@ -3,6 +3,10 @@ language: python
 python:
   - 3.4
 
+branches:
+ except:
+   - pr-master
+   
 env:
   global:
     - FOO=FUBU

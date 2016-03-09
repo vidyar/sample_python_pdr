@@ -10,6 +10,7 @@ branches:
 env:
   global:
     - FOO=FUBU
+    - a="bb"
 
   matrix:
     - M1=ONE
@@ -27,6 +28,7 @@ build:
   ci:
     - ps -eax
     - ls -al
+    - echo $a and $FOO and $M1
 
   post_ci:
     - docker push quay.io/shippablequay/hitchcock2_sample_python

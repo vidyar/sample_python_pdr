@@ -4,14 +4,13 @@ language: python
 python:
   - 3.4
 
-branches:
- except:
-   - pr-master
+
    
 env:
   global:
     - FOO=FUBU
     - a="bb"
+    - secure: RozIKgJ5ZNa1WOklBYPkr/1nHiIb9AxVnlh/94sTF6NPSjSclZnA0Kr/aL5+uQMagXS5w8YXQ7eMZ1nzL2gYIoe/nMVoZdYHxxtskixhaA1u+8Ha9SqF00p6ql6Qg2/XllVm0L+xLoBEX4dn0oajRvfNwTdvdvPkObEA9mr/WJWWW/4t/w3SAD1pMIE4dRxXCZsHe8fc0IWqMMG1UZpIy4TMe3RMtUvduZQ1yZc+i65SDaCzMzZFBhz7nk+HczrtOb1CwQ01V/aAO9Cm2neOJTl3I7Aru/xG1w3ihOeYUlZdL+dK/WzI/six23Zq7g3TXVzS7qNVRBz1UqOap+VYIg==
 
   matrix:
     - M1=ONE
@@ -30,6 +29,7 @@ build:
     - ps -eax
     - ls -al
     - echo $a and $FOO and $M1
+    - echo $key1
 
   post_ci:
     - docker push quay.io/shippablequay/hitchcock2_sample_python
